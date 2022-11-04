@@ -1,0 +1,70 @@
+* {
+    margin:0;
+    font-family:"Source Code Pro",Consolas,Monaco,Menlo,Consolas,monospace;
+}
+body {
+  min-width:900px;
+}
+
+#toolbar {
+    position:fixed;
+    background-image: url('../images/empty.png');
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    width:100%;
+    
+}
+
+.gutter {
+    background-color: #4e4e4e;
+    color:#b2b2b2;
+    margin-right: 0.5em;
+    padding-left: 0.5em;
+
+}
+
+.code {
+    width:800px;
+    
+}
+
+.line {
+    height:22.4px;
+}
+footer {
+    position: fixed;
+    bottom:0;
+    width:100%;
+    
+}
+
+#mode-line {
+    background-color: #87D7AF;
+    color:#005f5f;
+    white-space: nowrap;
+}
+
+#minibuffer {
+    background-color: #303030;
+}
+
+.gutter, .code {
+    float:left;
+    margin-top:72px;
+
+}
+
+@keyframes blink {50% { opacity: 0.0; }}
+@-webkit-keyframes blink {50% { opacity: 0.0; }}
+@-moz-keyframes blink {50% { opacity: 0.0; }}
+
+
+.cursor {
+    animation: blink 1s step-end infinite;
+    -webkit-animation: blink 1s step-end infinite;
+    -moz-animation: blink 1s step-end infinite;
+}
+
+#main {
+    margin-bottom: 2.25em;
+}

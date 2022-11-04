@@ -1,0 +1,36 @@
+body {
+  font-family: monospace;
+  color: #e8e8d3;
+  background-color: #303030;
+  font-size: large;
+}
+
+.Underlined, a {
+  color: #afd7ff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #5fafd7;
+}
+
+.Identifier {
+  color: #ff8700;
+}
+
+.Title {
+  color: #d7ff00;
+  font-weight: bold;
+}
+
+.lnr {
+  color: #605958;
+  background-color: #151515;
+}
+
+pre, code {
+  white-space: pre-wrap;
+  font-family: monospace;
+  color: #e8e8d3;
+}
+

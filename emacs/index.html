@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "https://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <title>Emacs</title>
+    <meta name="Generator" content="Emacs 24.5" />
+    <meta name="syntax" content="mkd" />
+    <meta name="settings" content="use_css,pre_wrap,expand_tabs" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="stylesheets/normalize.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="stylesheets/jellybeans.emacs.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="stylesheets/interface.css"
+      media="screen"
+    />
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "UA-58474364-2", "auto");
+      ga("send", "pageview");
+      // 你不該往下看
+
+      let KEYS = [];
+      let MB = null;
+      let TIMEOUT_ID = null;
+
+      function showMsgInMinibuffer(msg, duration) {
+        MB.textContent = msg;
+        KEYS = [];
+        if (duration !== -1) {
+          clearTimeout(TIMEOUT_ID);
+          TIMEOUT_ID = setTimeout(function () {
+            let copyleftImage =
+              '<img width="18" height="18" src="images/copyleft.svg">';
+            document.getElementById("minibuffer").innerHTML =
+              "Copyleft " +
+              copyleftImage +
+              " 2015-" +
+              new Date().getFullYear() +
+              " yanchim";
+          }, duration);
+        }
+      }
+
+      function handlePrefix() {
+        if (KEYS[0] === "C-x") {
+          switch (KEYS[1]) {
+            case "C-s":
+              return showMsgInMinibuffer("唉呀呀，被你發現了這個呢！", 3000);
+            case "C-c":
+              return showMsgInMinibuffer(
+                "哇，你竟然知道該怎麼離開 Emacs 耶！好棒棒！",
+                3000
+              );
+            case "C-f":
+              return showMsgInMinibuffer(
+                "好啦不要再試了，這裡開檔是開不出什麼鳥的啦。",
+                3000
+              );
+            case "C-q":
+              return showMsgInMinibuffer(
+                "哇你連這個都知道啊，但網頁本來就唯獨的啦。",
+                3000
+              );
+            case "C-e":
+              return showMsgInMinibuffer("你在 eval 三小啦。", 3000);
+            default:
+              return showMsgInMinibuffer(
+                (MB.textContent = KEYS.join(" ") + " is undefined"),
+                3000
+              );
+          }
+          return showMsgInMinibuffer(3000);
+        }
+      }
+
+      window.addEventListener("keypress", function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+          if (e.key === "h") {
+            showMsgInMinibuffer(
+              "Emacs 遇到困難可以按 C-h ，人生遇到困難可以按什麼啦啦啦",
+              3000
+            );
+          } else if (e.key === "g") {
+            showMsgInMinibuffer(
+              "就算你不按 C-g 這個網頁也什麼都不會做的啦。",
+              3000
+            );
+          }
+          if (KEYS.length > 0) {
+            KEYS.push("C-" + e.key);
+            handlePrefix();
+          } else {
+            if (e.key === "x") {
+              KEYS.push("C-x");
+              MB.textContent = "C-x-";
+              return;
+            }
+          }
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        MB = document.getElementById("minibuffer");
+        showMsgInMinibuffer("", 0);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="toolbar">
+      <img width="628" height="72" src="images/toolbar.png" />
+    </div>
+
+    <table id="main">
+      <tbody>
+        <tr>
+          <td class="gutter">
+            <pre>
+<span class="line"> 1 </span>
+<span class="line"> 2 </span>
+<span class="line"> 3 </span>
+<span class="line"> 4 </span>
+<span class="line"> 5 </span>
+<span class="line"> 6 </span>
+<span class="line"> 7 </span>
+<span class="line"> 8 </span>
+<span class="line"> 9 </span>
+<span class="line">10 </span>
+<span class="line">11 </span>
+<span class="line">12 </span>
+<span class="line">13 </span>
+<span class="line">14 </span>
+<span class="line">15 </span>
+<span class="line">16 </span>
+<span class="line">17 </span>
+<span class="line">18 </span>
+<span class="line">19 </span>
+<span class="line">20 </span>
+<span class="line">21 </span>
+<span class="line">22 </span>
+<span class="line">23 </span>
+<span class="line">24 </span>
+<span class="line">25 </span>
+<span class="line">26 </span>
+<span class="line">27 </span>
+<span class="line">28 </span>
+<span class="line">29 </span>
+<span class="line">30 </span>
+<span class="line">31 </span>
+<span class="line">32 </span>
+<span class="line">33 </span>
+<span class="line">34 </span>
+<span class="line">35 </span>
+<span class="line">36 </span>
+<span class="line">37 </span>
+<span class="line">38 </span>
+<span class="line">39 </span>
+<span class="line">40 </span>
+<span class="line">41 </span>
+<span class="line">42 </span>
+<span class="line">43 </span>
+<span class="line">44 </span>
+<span class="line">45 </span>
+<span class="line">46 </span>
+<span class="line">47 </span>
+<span class="line">48 </span>
+</pre>
+          </td>
+          <td class="code">
+            <pre>
+<span class="line Title">#+TITLE: Emacs</span>
+<span class="line"></span>
+<span class="line">Why <span class="Underlined"><a href="https://www.gnu.org/software/emacs/">Emacs</a></span>?</span>
+<span class="line"></span>
+<span class="line">Emacs changes how you think about programming.</span>
+<span class="line"></span>
+<span class="line">Emacs is <strong>totally introspectable</strong>. You can always find out ‘what code runs when I press this button?’.</span>
+<span class="line"></span>
+<span class="line">Emacs is an <strong>incremental programming environment</strong>. There's no edit-compile-run cycle. There isn't even an edit-run cycle. You can execute snippets of code and gradually turn them into a finished project. There's no distinction between your editor and your interpreter.</span>
+<span class="line"></span>
+<span class="line">Emacs is a <strong>mutable environment</strong>. You can set variables, tweak functions with advice, or redefine entire functions. Nothing is off-limits.</span>
+<span class="line"></span>
+<span class="line">Emacs provides <strong>functionality without applications</strong>. Rather than separate applications, functionality is all integrated into your Emacs instance. Amazingly, this works. Ever wanted to use the same snippet tool for writing C++ classes as well as emails?</span>
+<span class="line"></span>
+<span class="line">Emacs is an <strong>incremental programming environment</strong>. There's no edit-compile-run cycle. There isn't even an edit-run cycle. You can execute snippets of code and gradually turn them into a finished project. There's no distinction between your editor and your interpreter.</span>
+<span class="line"></span>
+<span class="line">Emacs is full of <strong>incredible software concepts that haven't hit the mainstream yet</strong>. For example:</span>
+<span class="line"></span>
+<span class="line Identifier">- </span><span class="line">Emacs has an <strong>infinite clipboard</strong>.</span>
+<span class="line Identifier">- </span><span class="line">Emacs allows <strong>undoing to any historical state</strong>, even allowing tree-based exploration of history.</span>
+<span class="line Identifier">- </span><span class="line">Emacs can perform <strong>structural editing of code</strong>.</span>
+<span class="line"></span>
+<span class="line Title">* Emacs has many more features...</span><span class="cursor">█</span>
+<span class="line"></span>
+<span class="line">Emacs has a <strong>documentation culture</strong>. Emacs includes a usage manual, a lisp programming manual, pervasive docstrings and even an interactive tutorial.</span>
+<span class="line"></span>
+<span class="line">Emacs has a <strong>broad ecosystem</strong>. If you want to edit code in a niche language, there's probably an Emacs package for it.</span>
+<span class="line"></span>
+<span class="line">Emacs doesn't have a monopoly on good ideas, and there are other great tools out there. Nonetheless, we believe the <a href="https://stackoverflow.com/questions/10942008/what-does-emacs-learning-curve-actually-look-like">Emacs learning curve pays off</a>.</span>
+<span class="line"></span>
+<span class="line">This page credits to <a href="https://github.com/emacs-tw/emacs-tw.github.io">emacs-tw</a>.</span>
+            </pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      <div id="mode-line">
+        -UUU:%%-
+        <span style="font-weight: bold; color: #111">emacsen</span>
+        All/1.9k(36,34) Git:master (Org)
+        --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      </div>
+      <div id="minibuffer">
+        Copyleft <img width="18" height="18" src="images/copyleft.svg" /> 2015
+        yanchim
+      </div>
+    </footer>
+  </body>
+</html>
